@@ -7,10 +7,9 @@
     }
 
 
-
 \newcommand{\nombreAlumno}{
     \item[\textbf{R1.1}] El campo nombre\_alumno debe ser una cadena de texto que contenga caracteres alfabéticos y espacios, con una longitud mínima de 5 y máxima de 50 caracteres. Ej: Jorge Rubilar.
-}
+} 
 
 \newcommand{\rutAlumno}{
     \item[\textbf{R1.2}] El campo rut\_alumno debe ser una cadena de 8 a 9 caracteres, compuesta por números enteros y un dígito verificador final, que puede ser un número del 0 al 9 o la letra 'K' (mayúscula), sin puntos ni guión. Ej: \textit{213069322}.
@@ -36,13 +35,18 @@
     \item[\textbf{R1.7}] Los campos nombre\_alumno, rut\_alumno, nombre\_profesor y rut\_profesor son obligatorios para realizar una carga válida en el sistema HabilProf.
 }
 
-\newcommand{\verDatos}{
-    \item[\textbf{R1.8}] El sistema deberá verificar la información de alumnos y profesores consultando a los otros 2 sistemas pertenecientes a la UCSC, utilizando el campo rut\_alumno y rut\_profesor.  \textbf{\textit{este es el nuevo R1.14 en la revision}}
+\newcommand{\verificaDatos}{
+    %\item[\textbf{R1.8}] El sistema deberá verificar la información de alumnos y profesores consultando a los otros 2 sistemas pertenecientes a la UCSC, utilizando el campo rut\_alumno y rut\_profesor.  \textbf{\textit{este es el nuevo R1.14 en la revision}}
+    \item[\textbf{R1.8}] El sistema debera obtener los datos a partir de los sistemas de la institución :
+        \begin{itemize}
+            \item [\textbf{R1.8.1}] a partir del sistema \textit{carga academica} se obtendran los datos de nombre\_alumno y rut\_alumno.   
+            \item [\textbf{R1.8.2}] a partir del sistema \textit{gestion academica} se obtendran los datos nombre\_profesor y rut\_profesor.
+        \end{itemize}
 }
 
 \newcommand{\verNotaFinal}{
-    \item[\textbf{R1.9}]  El campo nota\_final deberá ser verificado en el sistema Notas en Línea de la institución; en caso de no existir, se guardará como un valor nulo hasta su actualización. 
+    \item[\textbf{R1.9}]  El campo nota\_final deberá obtener sus datos del sistema Notas en Línea de la institución usando el valor de rut\_alumno como referencia; en caso de no existir, se guardará como un valor nulo hasta su actualización. 
+    }
 
-}
-
-
+% en base a lo puesto en las correcciones del profe se puede tomar como valores los datos R1.10 y R1.11 para extraer los datos
+% re escribir esos puntos porque estan mal anotados c-c
