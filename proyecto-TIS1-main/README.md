@@ -13,6 +13,3 @@ En este repositorio se iran agregando los avances y los materiales para el proye
 - [primera entrega](/informe/informe0.pdf)
 
 
-##### notas temporales 
-
-laravel es un framework de tipo m-v-c

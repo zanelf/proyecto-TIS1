@@ -1,0 +1,30 @@
+\documentclass{article}  
+\usepackage{libreria} %agrega todas las librerias que se encuentran  en otro archivo para simplificar la comprension del documento
+\usepackage{./parts/R1fun}
+\usepackage{./parts/R2fun}
+
+
+
+
+
+\begin{document}
+
+
+    %crea toda la portada en otro documento y lo importa para simplificar la estructura del proyecto
+    \import{./}{portada.tex}  %si ponen los archivos en otra carpeta el formato es {./carpeta1}{archivo.tex}
+    \tableofcontents
+    \newpage
+
+    \input{parts/introduccion.tex}
+
+    \newpage
+
+    \input{parts/R1.tex}
+
+
+    
+
+\end{document}
+
+
+
