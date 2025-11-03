@@ -15,6 +15,12 @@ https://uvirtual2.ucsc.cl/mod/resource/view.php?id=3826055)
 - [primera entrega](/informe/informe0.pdf)
 
 
-##### notas temporales 
+##### otras notas
 
-laravel es un framework de tipo m-v-c
+por cualquier cosa dejare estos 2 comandos aca para facil acceso
+al actualizar o volver a descargar el repositorio correr 
+````compose install```
+
+y crear un .env y el .env.example quedo con una version limpia.
+
+```compose migrate```
