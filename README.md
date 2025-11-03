@@ -18,9 +18,12 @@ https://uvirtual2.ucsc.cl/mod/resource/view.php?id=3826055)
 ##### otras notas
 
 por cualquier cosa dejare estos 2 comandos aca para facil acceso
-al actualizar o volver a descargar el repositorio correr 
-````compose install```
 
+al actualizar o volver a descargar el repositorio correr 
+
+````compose install```
 y crear un .env y el .env.example quedo con una version limpia.
 
 ```compose migrate```
+este comando creara la base de datos vacia
+**IMPORTANTE**: este comando hace drop y luego crea las tablas asi que asegurense de dejar un backup antes de otra. 
