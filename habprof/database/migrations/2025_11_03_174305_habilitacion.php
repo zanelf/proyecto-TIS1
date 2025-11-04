@@ -9,13 +9,39 @@ return new class extends Migration{
      * Run the migrations.
      */
     public function up(): void{
-        if (config('database.default') === 'pgsql') {
-            DB::statement("CREATE DOMAIN S_I AS varchar(6) CHECK (VALUE ~ '^\d{4}-\d{1}$')");
-            DB::statement("CREATE DOMAIN T_hab AS varchar(5) CHECK (VALUE IN ('PrIng', 'PrInv', 'PrTut'))");
-            DB::statement("CREATE DOMAIN T_prof AS varchar(10) CHECK (VALUE IN ('Guia', 'Co-Guia', 'Comision', 'Tutor'))");
-        }
 
-        Schema::create('habilitacion', function (Blueprint $table) {
+     if (config('database.default') === 'pgsql'){
+        DB::statement("
+            CREATE TABLE Habilitacion (
+            id_habilitacion serial PRIMARY KEY,
+            rut_alumno varchar(10) NOT NULL,
+            semestre_inicio S_I NOT NULL,
+            Nota numeric(2,1),
+            Fecha_registro_nota date,
+            Nombre_empresa varchar(40),
+            Nombre_Supervisor_Empresa varchar(30),
+            T_habilitacion T_hab NOT NULL,
+            CONSTRAINT FK_Habilitacion_Alumno
+            FOREIGN KEY (rut_alumno) REFERENCES alumno (rut_alumno)
+            );
+        ");
+
+        DB::statement("
+            CREATE TABLE P_H (
+            id_habilitacion integer NOT NULL,
+            rut_profesor varchar(10) NOT NULL,
+            Tipo_profesor T_prof NOT NULL,
+            PRIMARY KEY (id_habilitacion, rut_profesor, Tipo_profesor),
+            CONSTRAINT FK_PH_Habilitacion
+            FOREIGN KEY (id_habilitacion) REFERENCES Habilitacion (id_habilitacion)
+            ON DELETE CASCADE,
+            CONSTRAINT FK_PH_Profesor
+            FOREIGN KEY (rut_profesor) REFERENCES profesor (rut_profesor)
+            ); 
+    ");
+
+     }
+     /* Schema::create('habilitacion', function (Blueprint $table) {
             $table->id('id_habilitacion');
             $table->string('rut_alumno', 10)->nullable(false);
             $table->decimal('Nota', 2, 1)->nullable();
@@ -38,8 +64,7 @@ return new class extends Migration{
                   ->references('rut_alumno')
                   ->on('alumno')
                   ->onDelete('cascade');
-        });
-
+        }
 
 
         Schema::create('p_h', function (Blueprint $table) {
@@ -60,20 +85,13 @@ return new class extends Migration{
             $table->foreign('rut_profesor', 'FK_PH_Profesor')
                   ->references('rut_profesor')
                   ->on('profesor');
-        });
+        });*/
     }
 
     
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void{
-        if (config('database.default') === 'pgsql') {
-            DB::statement('DROP DOMAIN IF EXISTS T_prof');
-            DB::statement('DROP DOMAIN IF EXISTS T_hab');
-            DB::statement('DROP DOMAIN IF EXISTS S_I');
-        }
+ 
         Schema::dropIfExists('habilitacion');
         Schema::dropIfExists('p_h');
 
